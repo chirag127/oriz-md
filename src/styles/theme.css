@@ -1,0 +1,108 @@
+/* ===================================================================
+   oriz-md — "Zen dual-pane" identity
+   Cool sage + warm grey. Split editor / preview with a soft seam.
+   Mono for the editor, serif for the preview. Calm, distraction-free.
+   Overrides the shared --oz-* contract; adds chrome aliases + site tokens.
+   =================================================================== */
+:root {
+  /* ---- color roles (contract override) ---- */
+  --oz-bg: #f3f5f2;          /* warm-cool paper */
+  --oz-fg: #2b3330;          /* deep sage-ink */
+  --oz-surface: #eaeee9;     /* raised panel */
+  --oz-muted: #6d7a73;       /* secondary text */
+  --oz-border: #d3dcd5;      /* hairlines */
+  --oz-accent: #4a7c6f;      /* sage green */
+  --oz-accent-fg: #f6f8f5;
+
+  /* ---- chrome aliases (oz-chrome/styles.css reads these) ---- */
+  --oz-paper: #eef1ed;
+  --oz-paper-2: #e6ebe6;
+  --oz-ink: #2b3330;
+  --oz-ink-mute: #6d7a73;
+  --oz-rule: #d3dcd5;
+  --oz-header-h: 3.5rem;
+  --oz-container: 100%;
+  --oz-text-lg: 1.2rem;
+  --oz-text-md: 0.95rem;
+  --oz-text-sm: 0.82rem;
+  --oz-space-5: 1.25rem;
+  --oz-z-overlay: 1000;
+
+  /* ---- bespoke site tokens ---- */
+  --md-sage: #4a7c6f;
+  --md-sage-deep: #35594f;
+  --md-sage-soft: #8fb0a4;
+  --md-warm-grey: #6d7a73;
+  --md-seam: linear-gradient(180deg, transparent, var(--md-sage-soft) 12%, var(--md-sage-soft) 88%, transparent);
+  --md-editor-bg: #fbfcfb;
+  --md-preview-bg: #f6f8f5;
+  --md-glow: 0 0 0 1px rgba(74, 124, 111, 0.12), 0 6px 28px -12px rgba(53, 89, 79, 0.28);
+  --md-focus: 0 0 0 3px rgba(74, 124, 111, 0.35);
+
+  /* ---- font slots ---- */
+  --oz-font-display: 'Newsreader Variable', Georgia, serif;
+  --oz-font-body: 'Newsreader Variable', Georgia, serif;
+  --oz-font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --oz-bg: #14201c;
+    --oz-fg: #dfe8e2;
+    --oz-surface: #1a2823;
+    --oz-muted: #8ca298;
+    --oz-border: #2a3a33;
+    --oz-accent: #7fb3a3;
+    --oz-accent-fg: #0e1815;
+
+    --oz-paper: #16221e;
+    --oz-paper-2: #121c19;
+    --oz-ink: #dfe8e2;
+    --oz-ink-mute: #8ca298;
+    --oz-rule: #2a3a33;
+
+    --md-sage: #7fb3a3;
+    --md-sage-deep: #a7cabe;
+    --md-sage-soft: #3a5850;
+    --md-editor-bg: #101a17;
+    --md-preview-bg: #131f1b;
+    --md-glow: 0 0 0 1px rgba(127, 179, 163, 0.14), 0 8px 30px -14px rgba(0, 0, 0, 0.6);
+    --md-focus: 0 0 0 3px rgba(127, 179, 163, 0.4);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  color-scheme: light dark;
+  background: var(--oz-bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(74, 124, 111, 0.08), transparent 60%),
+    var(--oz-bg);
+  color: var(--oz-fg);
+  font-family: var(--oz-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.oz-main { flex: 1 1 auto; width: 100%; padding: 0; max-width: none; }
+
+:where(a):focus-visible,
+:where(button):focus-visible,
+:where(textarea):focus-visible,
+:where(input):focus-visible,
+:where(select):focus-visible {
+  outline: none;
+  box-shadow: var(--md-focus);
+  border-radius: var(--oz-radius-s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

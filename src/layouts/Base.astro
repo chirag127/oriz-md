@@ -1,0 +1,44 @@
+---
+import '@fontsource-variable/newsreader'
+import '@fontsource-variable/jetbrains-mono'
+import '@chirag127/oz-tokens-base/contract.css'
+import '@chirag127/oz-chrome/styles.css'
+import '../styles/theme.css'
+import '../styles/app.css'
+import OzToolShell from '@chirag127/oz-chrome/components/OzToolShell.astro'
+
+interface Props {
+  title?: string
+  description?: string
+}
+const {
+  title = 'Markdown Studio',
+  description = 'A calm, split-screen markdown editor with live GFM preview, syntax highlighting, table of contents, HTML export and print-to-PDF. 100% in your browser — no upload, no signup.',
+} = Astro.props
+const canonical = new URL(Astro.url.pathname, Astro.site).href
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · md.oriz.in</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={`${title} · md.oriz.in`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <OzToolShell site="md" title="Markdown Studio">
+      <slot />
+      <Fragment slot="footer">
+        <a href="https://github.com/chirag127/oriz-md">Source</a>
+        <span>100% client-side</span>
+      </Fragment>
+    </OzToolShell>
+  </body>
+</html>
