@@ -12,10 +12,22 @@ interface Props {
   description?: string
 }
 const {
-  title = 'Markdown Studio',
-  description = 'A calm, split-screen markdown editor with live GFM preview, syntax highlighting, table of contents, HTML export and print-to-PDF. 100% in your browser — no upload, no signup.',
+  title = 'Markdown Editor — live GFM preview, free, no signup',
+  description = 'Free online Markdown editor with live GitHub-Flavored preview, syntax highlighting, auto table of contents, HTML export and print-to-PDF. 100% in your browser — no upload, no signup.',
 } = Astro.props
 const canonical = new URL(Astro.url.pathname, Astro.site).href
+const fullTitle = `${title} · md.oriz.in`
+const ogImage = new URL('/screenshots/desktop.png', Astro.site).href
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'oriz Markdown Studio',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Web',
+  url: 'https://md.oriz.in',
+  description,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+}
 ---
 
 <!doctype html>
@@ -23,13 +35,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} · md.oriz.in</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta property="og:title" content={`${title} · md.oriz.in`} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="md.oriz.in" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#4a7c6f" />
