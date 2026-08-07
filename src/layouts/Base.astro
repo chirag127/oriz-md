@@ -31,9 +31,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#4a7c6f" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Markdown" />
+    <script is:inline src="/registerSW.js"></script>
   </head>
   <body>
-    <OzToolShell site="md" title="Markdown Studio">
+    <OzToolShell site="md" title="Markdown Studio" themeColor="#4a7c6f">
       <slot />
       <Fragment slot="footer">
         <a href="https://github.com/chirag127/oriz-md">Source</a>
