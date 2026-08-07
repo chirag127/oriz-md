@@ -1,0 +1,28 @@
+# oriz-md — Markdown Studio
+
+> Free, 100% client-side split-screen editor for GitHub-Flavored Markdown. Live preview, syntax highlighting, auto table of contents, HTML/Markdown export, print-to-PDF, and optional AI assist. No upload, no signup, no tracking — everything runs in your browser. Live at https://md.oriz.in
+
+## Core
+
+- [Live app](https://md.oriz.in): The Markdown studio — write GFM on the left, see the rendered preview on the right, in real time.
+- [About / info page](https://chirag127.github.io/oriz-md/): What oriz-md is, its features, and its tech stack.
+- [Source code](https://github.com/chirag127/oriz-md): MIT-licensed Astro + React source on GitHub.
+
+## Features
+
+- Live GFM preview: headings, tables, task lists, autolinks, strikethrough — rendered as you type via `marked`, sanitized with DOMPurify.
+- Syntax highlighting: highlight.js, lazy-loaded only when a document contains code fences.
+- Auto table of contents: generated from headings with in-page anchor links.
+- Export: download a standalone `.html` or `.md` file, or print to PDF through the browser print dialog.
+- Focus mode: dims everything except the current writing area.
+- AI assist (optional): expand an outline, summarize, fix markdown, or generate a TOC — via free g4f providers with failover; if AI is down the document is untouched.
+- Autosave: the document persists to `localStorage` between sessions.
+- Drag & drop: drop a `.md` file onto the editor to open it.
+- PWA: installable, works offline after first load.
+
+## Tech
+
+- Client-only Astro static site with a React 19 island for the editor.
+- Tailwind v4 styling; shared `@chirag127/oz-*` packages (oz-ai, oz-file, oz-tokens-base, oz-chrome) for mechanism.
+- AI via g4f (`@chirag127/oz-ai`) — keyless, multi-provider, browser-side.
+- 100% in-browser: no server, no upload, no signup, no tracking.

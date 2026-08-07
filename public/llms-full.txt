@@ -1,0 +1,100 @@
+# oriz-md — Markdown Studio
+
+**Live app:** https://md.oriz.in
+**About / info:** https://chirag127.github.io/oriz-md/
+**Source:** https://github.com/chirag127/oriz-md
+**License:** MIT
+
+oriz-md is a free, 100% client-side Markdown studio: a split-screen editor for GitHub-Flavored Markdown (GFM). You write on the left and read the rendered preview on the right, in real time. Nothing is uploaded, nothing requires a signup, and there is no tracking — every keystroke, render, and export happens in your browser.
+
+---
+
+## Hero
+
+Markdown editor. Write calm, read light.
+
+A free split-screen editor for GitHub-Flavored Markdown — live preview, syntax highlighting, auto table of contents, HTML export and print-to-PDF. All in your browser.
+
+no upload · no signup · autosaves locally
+
+---
+
+## What it does
+
+### Live GFM preview
+Renders GitHub-Flavored Markdown as you type: headings, tables, task lists, autolinks, strikethrough, code fences. Rendering runs through `marked` and every rendered fragment is sanitized with DOMPurify before it reaches the DOM, so pasted or AI-generated markdown cannot inject scripts. Rendering is debounced (~120 ms) for smoothness on large documents.
+
+### Syntax highlighting
+Code blocks are highlighted with highlight.js. The highlighter is lazy-loaded — it only downloads the first time your document contains a fenced code block (``` or ~~~), keeping the initial page light for prose-only documents.
+
+### Auto table of contents
+A "toc" panel builds a nested, clickable table of contents directly from your document's headings, with anchor links that jump to each section in the preview. Updates live as you add or edit headings.
+
+### Export
+- Download a standalone `.html` file — a self-contained HTML document of your rendered markdown.
+- Download the raw `.md` source.
+- Print to PDF via the browser's native print dialog ("print → pdf").
+File names are derived from the document's first H1 heading (slugified), falling back to "document".
+
+### Focus mode
+A "focus" toggle dims everything except the writing area so you can concentrate on the current text.
+
+### View modes
+Three view modes via the toolbar: split (editor + preview side by side), editor only, or preview only.
+
+### AI assist (optional)
+An "ai" panel offers four one-click tasks over your document:
+- **Expand outline** — expand a markdown outline into a well-structured first draft.
+- **Summarize** — condense the document into a concise bulleted summary.
+- **Fix markdown** — correct broken or inconsistent markdown syntax (headings, lists, tables, code fences, links) while preserving meaning.
+- **Generate TOC** — produce a nested markdown table-of-contents list from the headings.
+
+AI runs on free g4f providers with automatic failover. It sends only your document text, only when you press a button. The output appears for review; you choose whether to insert it into the document. If every provider is down, the AI panel reports "AI unavailable" and your document is left completely untouched — the core editor never depends on AI.
+
+### Autosave
+The document is saved to `localStorage` (key `oriz-md:doc`) about half a second after you stop typing, and restored on your next visit. A brief "saved" indicator confirms each save.
+
+### Drag & drop
+Drop a `.md` file onto the editor pane to load its contents. A "drop .md to open" hint appears while dragging.
+
+### Editor conveniences
+- Tab key inserts two spaces instead of leaving the editor.
+- Live word count, character count, and estimated reading time in the toolbar.
+- Spellcheck enabled on the source textarea.
+- "clear" button empties the document (with a confirmation prompt if it has content).
+
+---
+
+## Privacy
+
+100% client-side. No upload, no signup, no tracking. Every keystroke, render, and export happens in your browser; nothing is sent to a server. AI features call third-party inference providers only when you press an AI button, and send only your document text for that single request.
+
+---
+
+## Tech
+
+- **Framework:** Astro (static output) with a single React 19 island (`Studio`) for the interactive editor.
+- **Styling:** Tailwind v4, with a bespoke calm/light theme unique to this site.
+- **Markdown:** `marked` for parsing, `DOMPurify` for sanitization, `highlight.js` for code highlighting.
+- **Shared packages:** `@chirag127/oz-ai` (keyless g4f AI client with provider failover), `@chirag127/oz-file` (download, drop-zone, read-as-text, print-to-PDF helpers), `@chirag127/oz-tokens-base` (design tokens), `@chirag127/oz-chrome` (shared chrome). These provide mechanism only — the visual identity is site-specific.
+- **PWA:** `@vite-pwa/astro` — installable, offline-capable after first load.
+- **Fonts:** Newsreader (variable) for reading, JetBrains Mono (variable) for the editor.
+- **Hosting:** Cloudflare Pages at https://md.oriz.in. A separate GitHub Pages info page lives at https://chirag127.github.io/oriz-md/.
+
+---
+
+## FAQ
+
+**Is it free?** Yes, completely free and open source (MIT).
+
+**Do I need an account?** No. There is no signup and no login anywhere in the app.
+
+**Is my writing uploaded anywhere?** No. The editor, preview, and exports are entirely in-browser. Only the optional AI buttons send text, and only the current document, only when pressed.
+
+**What Markdown flavor?** GitHub-Flavored Markdown (GFM): tables, task lists, autolinks, strikethrough, fenced code.
+
+**Can I use it offline?** Yes — it is a PWA and works offline after the first load; installable to your device.
+
+**Does it work if the AI is down?** Yes. AI is optional and isolated; the core editor, preview, and export never depend on it.
+
+**How do I export a PDF?** Click "print → pdf" and use your browser's print-to-PDF option.
