@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>oriz-md — About</title>
+  <meta name="description" content="About oriz-md: a free, 100% client-side Markdown studio with live GFM preview, export, and optional AI assist." />
+  <link rel="canonical" href="https://chirag127.github.io/oriz-md/" />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --ink: #e7e9ee;
+      --muted: #9aa3b2;
+      --line: #262b35;
+      --accent: #6ea8fe;
+      --accent-2: #7ee0c4;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      padding: 3rem 1.25rem 4rem;
+    }
+    main { max-width: 760px; margin: 0 auto; }
+    .badge {
+      display: inline-block;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .25rem .7rem;
+      margin-bottom: 1.25rem;
+    }
+    h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); line-height: 1.15; margin: 0 0 .6rem; }
+    h1 span { color: var(--accent); }
+    .lede { color: var(--muted); font-size: 1.1rem; margin: 0 0 1.75rem; max-width: 60ch; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2.5rem; }
+    a.btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      text-decoration: none; font-weight: 600; font-size: .95rem;
+      padding: .7rem 1.15rem; border-radius: 10px; border: 1px solid var(--line);
+      color: var(--ink); background: var(--panel); transition: border-color .15s, transform .05s;
+    }
+    a.btn:hover { border-color: var(--accent); }
+    a.btn:active { transform: translateY(1px); }
+    a.btn--primary { background: var(--accent); color: #0b0d11; border-color: var(--accent); }
+    a.btn--primary:hover { border-color: var(--accent-2); background: var(--accent-2); }
+    section { margin: 2.25rem 0; }
+    h2 { font-size: 1.15rem; margin: 0 0 .8rem; }
+    ul.feat { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; }
+    ul.feat li { padding-left: 1.4rem; position: relative; color: var(--ink); }
+    ul.feat li::before { content: "▸"; position: absolute; left: 0; color: var(--accent-2); }
+    ul.feat b { color: #fff; font-weight: 600; }
+    .tech { color: var(--muted); }
+    .tech code { color: var(--accent-2); background: var(--panel); padding: .1rem .35rem; border-radius: 5px; }
+    .note { border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.15rem; background: var(--panel); color: var(--muted); }
+    .note strong { color: var(--ink); }
+    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    footer a { color: var(--accent); }
+    .links { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; margin-top: .5rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="badge">About this project</p>
+    <h1>oriz-md <span>— Markdown Studio</span></h1>
+    <p class="lede">
+      A free, 100% client-side editor for GitHub-Flavored Markdown: live editor + preview,
+      GFM, export to HTML/PDF. This is the project info page — the live tool is a separate app.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn btn--primary" href="https://md.oriz.in">Open the live app →</a>
+      <a class="btn" href="https://github.com/chirag127/oriz-md">Source on GitHub</a>
+      <a class="btn" href="https://md.oriz.in/llms.txt">llms.txt</a>
+    </div>
+
+    <section>
+      <h2>What it is</h2>
+      <p class="tech">
+        oriz-md is a split-screen Markdown studio. Write GFM on the left, read the rendered
+        preview on the right — in real time, entirely in your browser. Export a standalone
+        <code>.html</code> or <code>.md</code> file, or print to PDF.
+      </p>
+    </section>
+
+    <section>
+      <h2>Key features</h2>
+      <ul class="feat">
+        <li><b>Live GFM preview</b> — headings, tables, task lists, autolinks, strikethrough.</li>
+        <li><b>Syntax highlighting</b> — highlight.js, lazy-loaded only when code appears.</li>
+        <li><b>Auto table of contents</b> — built from your headings, with anchor links.</li>
+        <li><b>Export</b> — download <code>.html</code> / <code>.md</code>, or print → PDF.</li>
+        <li><b>Focus mode</b> — dims everything but where you're writing.</li>
+        <li><b>Optional AI assist</b> — expand, summarize, fix markdown, or generate a TOC.</li>
+        <li><b>Autosave</b> — persists to <code>localStorage</code> between sessions.</li>
+        <li><b>Drag &amp; drop</b> — drop a <code>.md</code> file to open it.</li>
+        <li><b>PWA</b> — installable, works offline after first load.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tech</h2>
+      <p class="tech">
+        Client-only <code>Astro</code> static site with a <code>React 19</code> island ·
+        <code>Tailwind v4</code> · <code>marked</code> + <code>DOMPurify</code> + <code>highlight.js</code> ·
+        g4f AI via <code>@chirag127/oz-ai</code> (keyless, multi-provider) ·
+        PWA-installable · 100% in-browser — no upload, no signup.
+      </p>
+    </section>
+
+    <section>
+      <p class="note">
+        <strong>Private by design.</strong> Everything runs in your browser. Nothing is uploaded,
+        no account is required, and there is no tracking. The optional AI buttons send only your
+        document text, only when pressed.
+      </p>
+    </section>
+
+    <footer>
+      <div class="links">
+        <a href="https://md.oriz.in">Live app: md.oriz.in</a>
+        <a href="https://github.com/chirag127/oriz-md">GitHub: chirag127/oriz-md</a>
+        <a href="https://md.oriz.in/llms.txt">llms.txt</a>
+      </div>
+      <p>MIT © 2026 Chirag Singhal</p>
+    </footer>
+  </main>
+</body>
+</html>
