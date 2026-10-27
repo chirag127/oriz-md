@@ -23,7 +23,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "@vite-pwa/astro": "^1.2.0",
     "astro": "^6.4.8",
-    "dompurify": "^3.4.11",
+    "dompurify": "^3.4.17",
     "highlight.js": "^11.11.1",
     "marked": "^16.4.0",
     "react": "^19.2.0",
